@@ -3,7 +3,6 @@ import { BASE_URL_DOTA2 } from '../config'
 //docs https://docs.opendota.com/#tag/heroes
 const baseApiClient = axios.create({
   baseURL: BASE_URL_DOTA2,
-  withCredentials: false,
 })
 
 export const getHeroesAxiosAsync = async () => {

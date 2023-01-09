@@ -4,7 +4,9 @@ import { API_KEY_CLASH_ROYAL, BASE_URL_CLASH_ROYAL } from '../config'
 
 const baseApiClient = axios.create({
   baseURL: BASE_URL_CLASH_ROYAL,
-  withCredentials: false,
+  headers: {
+    Authorization: `Bearer ${API_KEY_CLASH_ROYAL}`,
+  },
 })
 
 export const getCardsFetchAsync = async () => {
@@ -29,20 +31,12 @@ export const getCardsFetch = () => {
 
 export const getCardsAxiosAsync = async () => {
   try {
-    const response = await baseApiClient.get('/cards', {
-      headers: {
-        Authorization: `Bearer ${API_KEY_CLASH_ROYAL}`,
-      },
-    })
+    const response = await baseApiClient.get('/cards')
     return response.data
   } catch (error) {
     console.error(error)
   }
 }
 export const getCardAxios = () => {
-  return baseApiClient.get('/cards', {
-    headers: {
-      Authorization: `Bearer ${API_KEY_CLASH_ROYAL}`,
-    },
-  })
+  return baseApiClient.get('/cards').then((response) => response.data)
 }
